@@ -1,0 +1,59 @@
+﻿@page
+@model OneSignalApp.Pages.AppListModel
+@{
+}
+
+<form>
+    <div class="col-6">
+        <h2 class="text-info">Apps List</h2>
+    </div>
+    @if (Model.IsAdmin)
+    {
+        <div class="col-6">
+            <a asp-page="/App" class="btn btn-info">
+                Create new App
+            </a>
+        </div>
+    }
+    <div class="border bg-white">
+        <br />
+        <div>
+            <table class="table table-striped border">
+                <tr class="table-secondary">
+                    <th>
+                        @Html.DisplayNameFor(m => m.AppList[0].Id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.AppList[0].Name)
+                    </th>
+                    @if (Model.IsAdmin)
+                    {
+                        <th>
+
+                        </th>
+                    }
+                </tr>
+                @foreach (var item in Model.AppList)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(m => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.Name)
+                        </td>
+                        @if (Model.IsAdmin)
+                        {
+                            <td>
+                                <a asp-page="/App" class="btn btn-info" asp-route-id="@item.Id">
+                                    Edit
+                                </a>
+                            </td>
+                        }
+
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</form>

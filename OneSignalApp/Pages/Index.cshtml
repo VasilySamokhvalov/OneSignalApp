@@ -1,0 +1,40 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+
+    @if (!Model.IsLoggedIn)
+    {
+        <form method="post">
+            <div class="form-group">
+                <label for="Email" class="col-sm-2 control-label">Email</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.loginModel.Email, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Password" class="col-sm-2 control-label">Password</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.loginModel.Password, new { @class = "form-control", @type = "password" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default">Login</button>
+                </div>
+            </div>
+        </form>
+    }
+    else
+    {
+        <div class="form-group">
+            <a asp-page-handler="Logout" class="btn btn-dark">
+                    Logout
+            </a>
+        </div>
+    }
+</div>
